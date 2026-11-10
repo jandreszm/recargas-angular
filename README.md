@@ -1,59 +1,36 @@
-# Recargas
+# Sistema de Venta de Recargas - Angular 22
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+Este proyecto incluye una interfaz moderna para la venta de recargas móviles desarrollada en **Angular 22** con soporte de estado reactivo mediante **Signals**, además de un servidor de desarrollo basado en **Node.js** para simular la persistencia de datos en un archivo físico.
 
-## Development server
+## 🚀 Instrucciones de Inicio
 
-To start a local development server, run:
+Para ejecutar y probar la aplicación localmente con el guardado de datos activo, debes inicializar tanto el frontend como el script simulador de backend.
 
+### 1. Iniciar el Servidor de Persistencia (Backend Simulado)
+Este script de Node.js se encarga de recibir los datos del formulario y escribirlos físicamente en el archivo `src/app/venta-recargas/venta-recargas.json.ts`.
+
+Abre una terminal en la raíz del proyecto y ejecuta:
+```bash
+npm install express cors
+node guardar.js
+```
+*Debe aparecer el mensaje: `🚀 Escritor de archivos activo y escuchando en http://localhost:3000`*
+
+### 2. Iniciar la Aplicación de Angular (Frontend)
+En una **segunda terminal** (dejando la anterior corriendo en segundo plano), levanta el servidor de desarrollo de Angular:
 ```bash
 ng serve
 ```
+Una vez compilado, abre tu navegador en [http://localhost:4200](http://localhost:4200).
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📂 Estructura del Archivo de Datos
+Cada recarga exitosa procesada en la pantalla se guardará automáticamente con el siguiente formato dentro de `src/app/venta-recargas/venta-recargas.json.ts`:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```typescript
+{
+  "operador": "Tigo",
+  "telefono": "3052611552",
+  "valor": 10000,
+  "fecha": "10/11/2026, 10:15:48"
+}
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

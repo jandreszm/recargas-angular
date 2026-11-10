@@ -1,0 +1,73 @@
+<div class="pantalla-contenedor">
+  <header class="pantalla-header">
+    <h1>Pantalla de venta de recargas</h1>
+  </header>
+
+  <main class="tarjeta-recarga">
+    <h2>Venta de recargas</h2>
+    <p class="descripcion-propuesta">Propuesta funcional de pantalla</p>
+
+    <form [formGroup]="recargaForm" (ngSubmit)="procesarRecarga()" class="formulario">
+
+      <!-- Selector de Operador -->
+      <div class="campo-grupo">
+        <label for="operador">Operador móvil</label>
+        <div class="select-wrapper">
+          <select id="operador" formControlName="operador">
+            @for (op of operadores(); track op.id) {
+              <option [value]="op.id">{{ op.nombre }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <!-- Campo de Número Telefónico -->
+      <div class="campo-grupo">
+        <label for="telefono">Número telefónico</label>
+        <input
+          id="telefono"
+          type="text"
+          inputmode="numeric"
+          formControlName="telefono"
+          placeholder="Ingrese el número telefónico"
+          maxlength="10"
+        />
+      </div>
+
+      <!-- Selector de Valor -->
+      <div class="campo-grupo">
+        <label for="valor">Valor de recarga</label>
+        <div class="select-wrapper">
+          <select id="valor" formControlName="valor">
+            @for (monto of montos(); track monto.valor) {
+              <option [value]="monto.valor">{{ monto.label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <!-- Panel de Confirmación de Valor (Verde) -->
+      <div class="bloque-confirmacion">
+        <span class="etiqueta-confirmacion">VALOR DE LA RECARGA</span>
+        <div class="monto-grande">
+          $ {{ valorSeleccionado() | number:'1.0-0' }}
+        </div>
+      </div>
+
+      <!-- Botón de Envío Dinámico -->
+      <button
+        type="submit"
+        [disabled]="recargaForm.invalid"
+        [class.btn-activo]="recargaForm.valid"
+        class="btn-registro"
+      >
+        Preparar registro de recarga
+      </button>
+
+    </form>
+
+    <footer class="pie-tarjeta">
+      <p>Esta es una demostración visual; el registro real se realizará mediante la API del sistema.</p>
+    </footer>
+  </main>
+</div>
